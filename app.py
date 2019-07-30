@@ -11,6 +11,16 @@ def display_student(student_id):
     return render_template('student.html', student=query_by_id(student_id))
 
 #Create an '/add' route here:
+@app.route('/add', methods =["GET", "POST"])
+def add_student_route():
+	if request.method == 'GET':
+		return render_template('add.html')
+	else: 
+		name = request.form['firstname']
+		year = request.form['studentyear']
+		save_to_database(student_name,student_year)
+		print('Recieved POST request!')
+		return render_template('add.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
